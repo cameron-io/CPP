@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 
+#include "queue.hpp"
+
 /*
     Focus is on memory safety using Smart Pointers
 */

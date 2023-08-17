@@ -7,7 +7,7 @@ int hash(std::string key, int width)
 
 class HashTable {
     int width = 0;
-    std::vector<std::vector<std::shared_ptr<Record>>> table;
+    std::vector<std::vector<record_t>> table;
 
     public:
     /*
@@ -17,9 +17,9 @@ class HashTable {
     HashTable(int width, int depth)
     {
         this->width = width;
-        this->table = std::vector<std::vector<std::shared_ptr<Record>>>(
+        this->table = std::vector<std::vector<record_t>>(
             depth,
-            std::vector<std::shared_ptr<Record>>(width)
+            std::vector<record_t>(width)
         );
     }
 
@@ -27,7 +27,7 @@ class HashTable {
     {
         const int bucketIndex = hash(key, this->width);
         auto& bucket = this->table[bucketIndex];
-        std::shared_ptr<Record> newObj = std::make_shared<Record>(key, value);
+        record_t newObj = std::make_shared<Record>(key, value);
 
         auto it = std::find_if(
             bucket.begin(), 

@@ -13,12 +13,13 @@ typedef struct {
    bool is_deleted = false;
 } Record;
 
-typedef std::tuple<std::shared_ptr<Record>, error_t> result_t;
+typedef std::shared_ptr<Record> record_t;
+typedef std::tuple<record_t, error_t> result_t;
 
 class HashTable {
 public:
     HashTable(int width, int depth);
-    void put(std::string key, std::string value);
+    result_t put(std::string key, std::string value);
     result_t get(std::string key, std::string value);
 };
 
