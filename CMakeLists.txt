@@ -13,12 +13,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 
 include_directories(.)
 
-add_library(hash_table SHARED lib/tables/hash_table.cpp)
-add_library(queue lib/linked_lists/queue.cpp)
+add_library(table_lib SHARED lib/tables/hash_table.cpp)
+
+add_executable(table_test tests/table_test.cpp)
+target_link_libraries(table_test table_lib)
 
 include(CTest)
 enable_testing()
-add_executable(turbo_tests tests/turbo_test.cpp)
+add_test (NAME table_test COMMAND table_test)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
