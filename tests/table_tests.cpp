@@ -1,28 +1,35 @@
 #include "lib/tables/hash_table.hpp"
 
+#include <map>
+#include <string>
+
 int hash_table_test()
 {
-    auto table = std::make_shared<HashTable>(10, 5);
+    int width = 10;
+    int depth = 5;
 
-    table->create("Dodge", "Auburn Hills, Michigan");
-    table->create("Ford", "Dearborn, Michigan");
-    table->create("Chevrolet", "Detroit, Michigan");
-    table->create("Ferrari", "Maranello, Italy");
-    table->create("Lamborghini", "Bolognese, Italy");
-    table->create("Porsche", "Stuttgart, Germany");
+    auto table = std::make_shared<HashTable>(width, depth);
+
+    std::map<std::string, std::string> items {
+        {"Dodge", "Auburn Hills, Michigan"},
+        {"Ford", "Dearborn, Michigan"},
+        {"Chevrolet", "Detroit, Michigan"},
+        {"Ferrari", "Maranello, Italy"},
+        {"Lamborghini", "Bolognese, Italy"},
+        {"Porsche", "Stuttgart, Germany"}
+    };
+
+    for (const auto& item : items) {
+        if (table->create_item(item.first, item.second) != 0)
+            throw std::logic_error("unable to insert item");
+    }
 
     table->print_table();
 
-    // Query Bucket Collision
     std::string key1 = "Porsche";
-    record_t record1 = table->query(key1);
-    std::cout << "Record " << key1 << " query  : " << record1->value << std::endl;
-
-    std::string key2 = "Dodge";
-    record_t record2 = table->query(key2);
-    std::cout << "Record " << key2 << " query  : " << record2->value << std::endl;
-
-    table->print_table();
+    auto record1 = table->query_item(key1);
+    if (record1->value != "Stuttgart, Germany")
+        throw std::logic_error("item query assertion failed");
 
     return 0;
 }
