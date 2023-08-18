@@ -1,5 +1,4 @@
 #include "lib/tables/hash_table.hpp"
-#include "lib/templates/utils.hpp"
 
 int hash_table_test()
 {
@@ -30,6 +29,5 @@ int hash_table_test()
 
 int main()
 {
-    int result = hash_table_test();
-    return result;
+    return hash_table_test();
 }

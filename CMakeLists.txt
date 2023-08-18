@@ -14,13 +14,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 include_directories(.)
 
 add_library(table_lib SHARED lib/tables/hash_table.cpp)
+add_library(oop_lib SHARED lib/oop/dependency_injection.cpp)
 
-add_executable(table_test tests/table_test.cpp)
-target_link_libraries(table_test table_lib)
+add_executable(oop_tests tests/oop_tests.cpp)
+target_link_libraries(oop_tests oop_lib)
+add_test (NAME oop_tests COMMAND oop_tests)
+
+add_executable(table_tests tests/table_tests.cpp)
+target_link_libraries(table_tests table_lib)
+add_test (NAME table_tests COMMAND table_tests)
 
 include(CTest)
 enable_testing()
-add_test (NAME table_test COMMAND table_test)
+
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
