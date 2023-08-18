@@ -2,6 +2,8 @@
 #define QUEUE_H
 
 #include <string>
+#include <iostream>
+#include <memory>
 
 class Queue {
 public:
