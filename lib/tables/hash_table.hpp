@@ -6,21 +6,36 @@
 #include <algorithm>
 #include <memory>
 #include <tuple>
+#include <iostream>
 
-typedef struct {
-   std::string key;
-   std::string value;
-   bool is_deleted = false;
-} Record;
+struct Record 
+{
+    Record(std::string k, std::string v)
+    : key(k)
+    , value(v)
+    {}
+    std::string key;
+    std::string value;
+    bool is_deleted = false;
+}
+
+typedef Record;
 
 typedef std::shared_ptr<Record> record_t;
-typedef std::tuple<record_t, error_t> result_t;
+typedef std::tuple<std::string, error_t> result_t;
 
 class HashTable {
 public:
+    int width = 0;
+    int depth = 0;
+
     HashTable(int width, int depth);
-    result_t put(std::string key, std::string value);
-    result_t get(std::string key, std::string value);
+    int create(std::string key, std::string value);
+    int update(std::string key, std::string value);
+    record_t query(std::string key);
+    void print_table();
+private:
+    std::vector<std::vector<record_t>> table;
 };
 
 #endif
