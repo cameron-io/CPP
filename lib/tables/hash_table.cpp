@@ -1,10 +1,5 @@
 #include "hash_table.hpp"
 
-int hash(std::string key, int width)
-{
-   return key.size() % width;
-}
-
 /*
     width -> number of buckets
     depth -> bucket-depth
@@ -26,7 +21,7 @@ int HashTable::create_item(std::string key, std::string value)
 {
     if (key == "") throw std::invalid_argument("key cannot be empty");
 
-    const int bucket_index = hash(key, this->width);
+    const int bucket_index = HashTable::hash(key);
     auto& bucket = this->table[bucket_index];
     record_t record = std::make_shared<Record>(key, value);
 
@@ -48,13 +43,14 @@ int HashTable::update_item(std::string key, std::string value)
 {
     if (key == "") throw std::invalid_argument("key cannot be empty");
 
-    const int bucket_index = hash(key, this->width);
+    const int bucket_index = HashTable::hash(key);
     auto& bucket = this->table[bucket_index];
     record_t record = std::make_shared<Record>(key, value);
 
     int i = 0;
     while (bucket[i]->key != "")
         i++;
+    
     if (i != this->width) {
         this->table[bucket_index][i] = record;
         return 0;
@@ -65,8 +61,8 @@ int HashTable::update_item(std::string key, std::string value)
 
 record_t HashTable::query_item(std::string key)
 {
-    const int bucketIndex = hash(key, this->width);
-    auto& bucket = this->table[bucketIndex];
+    const int bucket_index = HashTable::hash(key);
+    auto& bucket = this->table[bucket_index];
     
     auto it = std::find_if(
         bucket.begin(), 
@@ -75,7 +71,6 @@ record_t HashTable::query_item(std::string key)
             return record->key == key;
         }
     );
-
     if (it != bucket.end()) {
         int index = it - bucket.begin();
         return bucket[index];
@@ -84,17 +79,40 @@ record_t HashTable::query_item(std::string key)
     throw std::invalid_argument("item not found");
 }
 
+int HashTable::delete_item(std::string key)
+{
+    const int bucket_index = HashTable::hash(key);
+    auto& bucket = this->table[bucket_index];
+
+    auto it = std::find_if(
+        bucket.begin(), 
+        bucket.end(), 
+        [key](const auto record) -> bool {
+            return record->key == key;
+        }
+    );
+    if (it != bucket.end()) {
+        int index = it - bucket.begin();
+        this->table[bucket_index][index]->value = "";
+        this->table[bucket_index][index]->key = "";
+        return 0;
+    }
+    throw std::invalid_argument("item not found");
+}
+
 void HashTable::print_table() {
     std::cout << "[\n";
     for (const auto w : this->table)
     {
         std::cout << "    [";
-        for (const auto record : w) {
-            if (record->is_deleted != true) {
+        for (int d = 0; d < w.size(); d++) {
+            const auto record = w[d];
+            if (record->key != "") {
                 std::cout << "{" << record->key << ": " <<  record->value << "}";
             } else {
                 std::cout << "nil";
             }
+            if (d < w.size() - 1) printf(", ");
         }
         std::cout << "]\n";
     }

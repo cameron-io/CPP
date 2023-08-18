@@ -16,7 +16,6 @@ struct Record
     {}
     std::string key;
     std::string value;
-    bool is_deleted = false;
 }
 
 typedef Record;
@@ -30,13 +29,24 @@ public:
     int depth = 0;
 
     HashTable(int width, int depth);
+    /*
+        CRUD Operations
+    */
     int create_item(std::string key, std::string value);
     int update_item(std::string key, std::string value);
     record_t query_item(std::string key);
-    // int delete_item(std::string key);
+    int delete_item(std::string key);
+    /* 
+        Debugging
+    */
     void print_table();
 private:
     std::vector<std::vector<record_t>> table;
+
+    int hash(std::string key)
+    {
+        return key.size() % this->width;
+    }
 };
 
 #endif

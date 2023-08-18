@@ -2,6 +2,7 @@
 
 #include <map>
 #include <string>
+#include <string.h>
 
 int hash_table_test()
 {
@@ -26,10 +27,22 @@ int hash_table_test()
 
     table->print_table();
 
-    std::string key1 = "Porsche";
-    auto record1 = table->query_item(key1);
-    if (record1->value != "Stuttgart, Germany")
+    std::string key = "Porsche";
+    auto record = table->query_item(key);
+    if (record->value != "Stuttgart, Germany")
         throw std::logic_error("item query assertion failed");
+
+    table->delete_item("Dodge");
+
+    try {
+        auto record = table->query_item("Dodge");
+        throw std::logic_error("item not deleted");
+    }
+    catch(const std::invalid_argument& e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    table->print_table();
 
     return 0;
 }
