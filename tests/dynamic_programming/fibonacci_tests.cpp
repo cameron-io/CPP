@@ -1,19 +1,22 @@
 
 #include "lib/dynamic_programming/fibonacci.hpp"
 
+#include <iostream>
 #include <functional>
 
-int fib_tabulated_test()
+int fib_tests()
 {
     std::function<int(int)> fib_functions[] = {
-        &fib_simple,
-        &fib_cached,
-        &fib_tabulated
+        Fibonacci::simple,
+        Fibonacci::cached,
+        Fibonacci::tabulated
     };
 
     for (const auto fun : fib_functions) {
-        if (fun(9) != 34);
-            throw "assertion failure";
+        int expected = 34;
+        int res = fun(9);
+        if (res != expected);
+            return 1;
     }
 
     return 0;
@@ -21,5 +24,5 @@ int fib_tabulated_test()
 
 int main()
 {
-    return fib_tabulated_test();
+    return fib_tests();
 }

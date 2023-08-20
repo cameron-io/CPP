@@ -13,3 +13,11 @@ float singleton_random_generator_test()
 {
     return Random::Float();
 }
+
+int main()
+{
+    singleton_basic_test();
+    float num = singleton_random_generator_test();
+
+    return 0;
+}

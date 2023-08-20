@@ -1,6 +1,6 @@
 #include "lib/oop/dependency_injection.hpp"
 
-int dep_injection_test()
+int dependency_injection_test()
 {
     GasolineSource *stationService = new GasStation();
     GasolineSource *canService = new FuelCan();
@@ -23,5 +23,5 @@ int dep_injection_test()
 
 int main()
 {
-    return dep_injection_test();
+    return dependency_injection_test();
 }

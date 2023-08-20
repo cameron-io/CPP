@@ -19,7 +19,7 @@ void SomeFunction(const String& string)
     std::cout << string << std::endl;
 }
 
-void CopyTest()
+int object_copy_test()
 {
     String first = "test";
     String second = first;
@@ -32,4 +32,11 @@ void CopyTest()
 
     std::cout << first << std::endl;
     std::cout << second << std::endl;
+
+    return 0;
+}
+
+int main()
+{
+    return object_copy_test();
 }
