@@ -3,9 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
 #include <memory>
-#include <tuple>
 #include <iostream>
 
 struct Record 
@@ -21,7 +19,6 @@ struct Record
 typedef Record;
 
 typedef std::shared_ptr<Record> record_t;
-typedef std::tuple<std::string, error_t> result_t;
 
 class HashTable {
 public:
