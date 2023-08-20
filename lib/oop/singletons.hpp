@@ -14,7 +14,7 @@ public:
         causing data duplication
     */
     Singleton(const Singleton&) = delete;
-    Random& operator=(const Random) = delete;
+    Singleton& operator=(const Singleton) = delete;
 
     static Singleton& GetInstance()
     {
