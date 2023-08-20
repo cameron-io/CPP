@@ -6,20 +6,25 @@
 
 int fib_tests()
 {
-    std::function<int(int)> fib_functions[] = {
+    std::function<int(int)> functions[] = {
         Fibonacci::simple,
         Fibonacci::cached,
         Fibonacci::tabulated
     };
 
-    for (const auto fun : fib_functions) {
+    bool is_equal = false;
+
+    for (const auto fun : functions) {
         int expected = 34;
         int res = fun(9);
-        if (res != expected);
-            return 1;
+        is_equal = res == expected;
     }
 
-    return 0;
+    if (is_equal)
+        return 0;
+    else
+        std::cerr << "assertion failure" << std::endl;
+        return 1;
 }
 
 int main()
