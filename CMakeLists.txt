@@ -13,21 +13,44 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 
 include_directories(.)
 
+###
+# Libraries
+###
 add_library(table_lib SHARED lib/tables/hash_table.cpp)
-add_library(oop_lib SHARED lib/oop/dependency_injection.cpp)
+add_library(oop_lib SHARED
+    lib/oop/dependency_injection.cpp
+    lib/oop/object_copy.hpp
+    lib/oop/singletons.hpp
+)
 add_library(fibonacci_lib SHARED lib/dynamic_programming/fibonacci.cpp)
 
-add_executable(oop_tests tests/oop_tests.cpp)
-target_link_libraries(oop_tests oop_lib)
+###
+# Executables
+###
+
+add_executable(oop_tests
+    tests/oop/dep_injection_tests.cpp
+    tests/oop/object_copy_tests.cpp
+    tests/oop/singleton_tests.cpp)
+target_link_libraries(oop_tests
+    oop_lib)
 add_test (NAME oop_tests COMMAND oop_tests)
 
-add_executable(table_tests tests/table_tests.cpp)
-target_link_libraries(table_tests table_lib)
+add_executable(table_tests
+    tests/tables/hash_table_tests.cpp)
+target_link_libraries(table_tests
+    table_lib)
 add_test (NAME table_tests COMMAND table_tests)
 
-add_executable(fibonacci_tests tests/fibonacci_tests.cpp)
-target_link_libraries(fibonacci_tests fibonacci_lib)
-add_test (NAME fibonacci_tests COMMAND oop_tests)
+add_executable(dynamic_programming_tests
+    tests/dynamic_programming/fibonacci_tests.cpp)
+target_link_libraries(dynamic_programming_tests
+    fibonacci_lib)
+add_test (NAME dynamic_programming_tests COMMAND dynamic_programming_tests)
+
+###
+# CTest
+###
 
 include(CTest)
 enable_testing()
