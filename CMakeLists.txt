@@ -21,6 +21,13 @@ add_library(table_lib SHARED
     lib/tables/hash_table.cpp
 )
 
+add_library(linked_list_lib SHARED
+    lib/linked_lists/queue.hpp
+    lib/linked_lists/stack.hpp
+)
+set_target_properties(linked_list_lib
+    PROPERTIES LINKER_LANGUAGE CXX)
+
 add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
@@ -75,6 +82,21 @@ add_test (NAME object_copy_tests COMMAND object_copy_tests)
 add_test (NAME polymorphism_tests COMMAND polymorphism_tests)
 add_test (NAME singleton_tests COMMAND singleton_tests)
 add_test (NAME factory_tests COMMAND factory_tests)
+
+# Linked Lists
+
+add_executable(queue_tests
+    tests/linked_lists/queue_tests.cpp)
+target_link_libraries(queue_tests
+    linked_list_lib)
+add_test (NAME queue_tests COMMAND queue_tests)
+
+add_executable(stack_tests
+    tests/linked_lists/stack_tests.cpp)
+target_link_libraries(stack_tests
+    linked_list_lib)
+add_test (NAME stack_tests COMMAND stack_tests)
+
 
 # Tables
 
