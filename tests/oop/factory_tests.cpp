@@ -9,7 +9,8 @@
  * As long as the client keeps working with the creator via the
  * base interface, you can pass it any creator's subclass.
  */
-void ClientCode(const Creator& creator) {
+void ClientCode(const Creator& creator)
+{
   // ...
   std::cout << "Client: I'm not aware of the creator's class, but it still works.\n"
             << creator.SomeOperation() << std::endl;
@@ -21,7 +22,8 @@ void ClientCode(const Creator& creator) {
  * environment.
  */
 
-int main() {
+int main()
+{
   std::cout << "App: Launched with the ConcreteCreator1.\n";
   Creator* creator = new ConcreteCreator1();
   ClientCode(*creator);

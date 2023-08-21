@@ -18,13 +18,15 @@ class Product {
  */
 class ConcreteProduct1 : public Product {
  public:
-  std::string Operation() const override {
+  std::string Operation() const override
+  {
     return "{Result of the ConcreteProduct1}";
   }
 };
 class ConcreteProduct2 : public Product {
  public:
-  std::string Operation() const override {
+  std::string Operation() const override
+  {
     return "{Result of the ConcreteProduct2}";
   }
 };
@@ -57,7 +59,8 @@ class Creator {
    * different type of product from it.
    */
 
-  std::string SomeOperation() const {
+  std::string SomeOperation() const
+  {
     // Call the factory method to create a Product object.
     Product* product = this->FactoryMethod();
     // Now, use the product.
@@ -85,14 +88,16 @@ class ConcreteCreator1 : public Creator {
    * product classes.
    */
  public:
-  Product* FactoryMethod() const override {
+  Product* FactoryMethod() const override
+  {
     return new ConcreteProduct1();
   }
 };
 
 class ConcreteCreator2 : public Creator {
  public:
-  Product* FactoryMethod() const override {
+  Product* FactoryMethod() const override
+  {
     return new ConcreteProduct2();
   }
 };
