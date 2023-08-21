@@ -23,6 +23,7 @@ add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
     lib/oop/design_patterns/factory.hpp
+    lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp
 )
 set_target_properties(oop_lib
@@ -47,6 +48,10 @@ add_executable(object_copy_tests
 tests/oop/object_copy_tests.cpp)
 target_link_libraries(object_copy_tests oop_lib)
 
+add_executable(polymorphism_tests
+    tests/oop/polymorphism_tests.cpp)
+target_link_libraries(polymorphism_tests oop_lib)
+
 add_executable(singleton_tests
     tests/oop/singleton_tests.cpp)
 target_link_libraries(singleton_tests oop_lib)
@@ -57,6 +62,7 @@ target_link_libraries(factory_tests oop_lib)
 
 add_test (NAME dependency_injection_tests COMMAND dependency_injection_tests)
 add_test (NAME object_copy_tests COMMAND object_copy_tests)
+add_test (NAME polymorphism_tests COMMAND polymorphism_tests)
 add_test (NAME singleton_tests COMMAND singleton_tests)
 add_test (NAME factory_tests COMMAND factory_tests)
 
