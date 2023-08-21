@@ -1,4 +1,4 @@
-#include "lib/oop/singletons.hpp"
+#include "lib/oop/design_patterns/singletons.hpp"
 
 // Declare static object
 Singleton Singleton::s_Instance;

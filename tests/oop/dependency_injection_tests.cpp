@@ -1,22 +1,23 @@
-#include "lib/oop/dependency_injection.hpp"
+#include "lib/oop/design_patterns/dependency_injection.hpp"
 
 int dependency_injection_test()
 {
-    GasolineSource *stationService = new GasStation();
-    GasolineSource *canService = new FuelCan();
+    EnergySource *petrolSource = new Petrol();
+    EnergySource *batterySource = new Battery();
 
-    // racecar is independent from the implementation of the fuel service.
-    // a gas station service is injected.
-    Car racecar(stationService);
-    racecar.getGasoline();
+    // each car is independent from the 
+    // implementation of the energy source.
+    
+    // petrol source is injected.
+    Car mclaren_f1(petrolSource);
+    mclaren_f1.getEnergy();
 
-    // dune buggy is independent from the implementation of the fuel service.
-    // a fuel can service is injected.
-    Car duneBuggy(canService);
-    duneBuggy.getGasoline();
+    // battery source is injected.
+    Car formula_e(batterySource);
+    formula_e.getEnergy();
 
-    delete stationService;
-    delete canService;
+    delete petrolSource;
+    delete batterySource;
     
     return 0;
 }

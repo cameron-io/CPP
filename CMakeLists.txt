@@ -20,10 +20,12 @@ add_library(table_lib SHARED
     lib/tables/hash_table.cpp
 )
 add_library(oop_lib SHARED
-    lib/oop/dependency_injection.cpp
+    lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/object_copy.hpp
-    lib/oop/singletons.hpp
+    lib/oop/design_patterns/singletons.hpp
 )
+set_target_properties(oop_lib
+    PROPERTIES LINKER_LANGUAGE CXX)
 add_library(fibonacci_lib SHARED
     lib/dynamic_programming/fibonacci.hpp
 )
