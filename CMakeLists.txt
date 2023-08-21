@@ -23,6 +23,7 @@ add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
     lib/oop/design_patterns/factory.hpp
+    lib/oop/interface.hpp
     lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp
 )

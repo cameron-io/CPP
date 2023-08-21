@@ -3,27 +3,10 @@
 
 #include <iostream>
 
-class EnergySource {
-public:
-    virtual void Get() = 0;
-    virtual ~EnergySource() = default;
-};
-
-class Petrol : public EnergySource {
-public:
-    virtual void Get()
-    {
-        std::cout << "Getting petrol" << std::endl;
-    }
-};
-
-class Battery : public EnergySource {
-public:
-    virtual void Get()
-    {
-        std::cout << "Recharging battery" << std::endl;
-    }
-};
+/*
+    This design pattern extends the use of Interfaces
+*/
+#include "../interface.hpp"
 
 class Car {
     EnergySource *energySource = nullptr;
