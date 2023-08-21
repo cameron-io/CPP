@@ -43,14 +43,13 @@ public:
         if (!this->head) return 1;
 
         Node* prev_head = this->head;
-        Node* new_head = prev_head->next;
 
-        if (!new_head->next)
+        if (!prev_head->next)
         {
-            this->head = new_head;
-            this->tail = new_head;
+            this->head = nullptr;
+            this->tail = nullptr;
         } else {
-            this->head = new_head;
+            this->head = prev_head->next;
         }
 
         delete prev_head;

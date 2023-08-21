@@ -2,13 +2,14 @@
 #define STACK_H
 
 #include <iostream>
+#include <string>
 
 class Node {
 public:
-    char* value;
+    std::string value;
     Node* next = nullptr;
 
-    Node(char* value)
+    Node(std::string value)
     {
         this->value = value;
     }
@@ -23,7 +24,7 @@ public:
     {
     }
 
-    int push(char* value)
+    int push(std::string value)
     {
         Node* node = new Node(value);
 
@@ -65,9 +66,11 @@ public:
         Node* node = this->head;
 
         while (node) {
-            std::cout << "-> " << node->value << std::endl;
+            std::cout << "-> " << node->value << "\n";
             node = node->next;
         }
+
+        std::cout << std::endl;
     }
 };
 

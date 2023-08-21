@@ -5,6 +5,7 @@
 int main()
 {
     Stack* stack = new Stack();
+    
     stack->push("Jaguar");
     stack->push("Envision");
     stack->push("Avalanche");
