@@ -21,8 +21,9 @@ add_library(table_lib SHARED
 )
 add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
-    lib/oop/object_copy.hpp
     lib/oop/design_patterns/singletons.hpp
+    lib/oop/design_patterns/factory.hpp
+    lib/oop/object_copy.hpp
 )
 set_target_properties(oop_lib
     PROPERTIES LINKER_LANGUAGE CXX)
@@ -50,9 +51,14 @@ add_executable(singleton_tests
     tests/oop/singleton_tests.cpp)
 target_link_libraries(singleton_tests oop_lib)
 
+add_executable(factory_tests
+    tests/oop/factory_tests.cpp)
+target_link_libraries(factory_tests oop_lib)
+
 add_test (NAME dependency_injection_tests COMMAND dependency_injection_tests)
 add_test (NAME object_copy_tests COMMAND object_copy_tests)
 add_test (NAME singleton_tests COMMAND singleton_tests)
+add_test (NAME factory_tests COMMAND factory_tests)
 
 # Tables
 
