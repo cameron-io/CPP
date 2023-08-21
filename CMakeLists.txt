@@ -16,9 +16,11 @@ include_directories(.)
 ###
 # Libraries
 ###
+
 add_library(table_lib SHARED
     lib/tables/hash_table.cpp
 )
+
 add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
@@ -29,6 +31,13 @@ add_library(oop_lib SHARED
 )
 set_target_properties(oop_lib
     PROPERTIES LINKER_LANGUAGE CXX)
+
+add_library(memory_lib SHARED
+    lib/memory/pointer_arithmetic.hpp
+)
+set_target_properties(memory_lib
+    PROPERTIES LINKER_LANGUAGE CXX)
+
 add_library(fibonacci_lib SHARED
     lib/dynamic_programming/fibonacci.hpp
 )
@@ -74,6 +83,14 @@ add_executable(hash_table_tests
 target_link_libraries(hash_table_tests
     table_lib)
 add_test (NAME hash_table_tests COMMAND hash_table_tests)
+
+# Memory
+
+add_executable(memory_tests
+    tests/memory/pointer_arithmetic_tests.cpp)
+target_link_libraries(memory_tests
+    memory_lib)
+add_test (NAME memory_tests COMMAND memory_tests)
 
 # Dynamic Programming
 
