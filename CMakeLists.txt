@@ -114,6 +114,12 @@ target_link_libraries(memory_tests
     memory_lib)
 add_test (NAME memory_tests COMMAND memory_tests)
 
+# Types
+
+add_executable(type_punning_tests
+    tests/types/type_punning_tests.cpp)
+add_test (NAME type_punning_tests COMMAND type_punning_tests)
+
 # Dynamic Programming
 
 add_executable(dynamic_programming_tests
