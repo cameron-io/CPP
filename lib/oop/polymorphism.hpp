@@ -1,7 +1,22 @@
 #include <iostream>
  
+/*
+    Polymorphism is closely linked to the concept of Inheritance, which
+    allows us to inherit attributes and methods from another class.
+
+    However, Polymorphism allows us to perform the inherited methods in
+    different ways, thus overriding the inherited behaviours.
+*/
+
+/*
+    Base Class
+*/
+
 class Shape {
 protected:
+    /*
+        Protected members may only be accessed by inherited/derived classes
+    */
     int width, height;
 
 public:
@@ -15,6 +30,10 @@ public:
         return (width * height);
     }
 };
+
+/*
+    Derived Classes
+*/
 
 class Rectangle: public Shape {
 public:
