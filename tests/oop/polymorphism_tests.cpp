@@ -2,20 +2,31 @@
 
 int main()
 {
+    /*
+        Base Class is Declared
+    */
     Shape *shape;
-    Rectangle rec(10,7);
-    Triangle  tri(10,5);
+    
+    /*
+        Derived Classes are Instantiated
+    */
+    Rectangle rectangle(10,7);
+    Triangle triangle(10,5);
 
-    // store the address of Rectangle
-    shape = &rec;
+    /*
+        Store the address of Rectangle in Base Class
+    */
+    shape = &rectangle;
 
-    // call rectangle area.
+    // Calls Rectangle->area.
     shape->area();
 
-    // store the address of Triangle
-    shape = &tri;
+    /*
+        Store the address of Triangle in Base Class
+    */
+    shape = &triangle;
 
-    // call triangle area.
+    // Calls Triangle->area.
     shape->area();
 
     return 0;
