@@ -9,12 +9,16 @@
 #include "../interface.hpp"
 
 class Car {
+    /*
+        This represents the base class interface for 
+        the required dependency implementation
+    */
     EnergySource *energySource = nullptr;
 public:
     /*
-        The dependency for a source of gasoline is passed in
-        through constructor injection as opposed to
-        hard-coded into the class definition.
+        The derived class dependency for the source of energy 
+        is passed in through constructor injection:
+        - as opposed to hard-coded into the class definition.
     */
     Car(EnergySource *service)
         : energySource(service)
@@ -28,8 +32,9 @@ public:
     {
         std::cout << "Car is pulling in to service station!" << std::endl;
         /*
-            Abstract away the dependency implementation 
-            using polymorphism.
+            Call the interface dependency's derived 
+            implementation of the virtual function,
+            abstracting away the implementation
         */
         energySource->Get();
     }
