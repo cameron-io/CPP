@@ -63,6 +63,10 @@ add_executable(polymorphism_tests
     tests/oop/polymorphism_tests.cpp)
 target_link_libraries(polymorphism_tests oop_lib)
 
+add_executable(interface_tests
+    tests/oop/interface_tests.cpp)
+target_link_libraries(interface_tests oop_lib)
+
 add_executable(singleton_tests
     tests/oop/singleton_tests.cpp)
 target_link_libraries(singleton_tests oop_lib)
@@ -74,6 +78,7 @@ target_link_libraries(factory_tests oop_lib)
 add_test (NAME dependency_injection_tests COMMAND dependency_injection_tests)
 add_test (NAME object_copy_tests COMMAND object_copy_tests)
 add_test (NAME polymorphism_tests COMMAND polymorphism_tests)
+add_test (NAME interface_tests COMMAND interface_tests)
 add_test (NAME singleton_tests COMMAND singleton_tests)
 add_test (NAME factory_tests COMMAND factory_tests)
 

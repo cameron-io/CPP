@@ -61,7 +61,7 @@ public:
     virtual void Get()
     {
         std::cout << "Getting petrol" << std::endl;
-        capacity--;
+        this->capacity--;
     }
 };
 
@@ -70,7 +70,7 @@ public:
     virtual void Get()
     {
         std::cout << "Recharging battery" << std::endl;
-        capacity--;
+        this->capacity--;
     }
 };
 
