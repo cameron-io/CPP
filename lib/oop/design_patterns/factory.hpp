@@ -1,103 +1,89 @@
 #include <iostream>
 #include <string>
 
-/**
- * The Product interface declares the operations 
- * that all concrete products must implement.
- */
-
-class Product {
- public:
-  virtual ~Product() {}
-  virtual std::string Operation() const = 0;
+/*
+    Base Interface & its Implementations
+*/
+class IProduct {
+public:
+    virtual ~IProduct() {}
+    virtual std::string Entity() const = 0;
 };
 
-/**
- * Concrete Products provide various implementations 
- * of the Product interface.
- */
-class ConcreteProduct1 : public Product {
- public:
-  std::string Operation() const override
-  {
-    return "{Result of the ConcreteProduct1}";
-  }
+class ImplProduct1 : public IProduct {
+public:
+    std::string Entity() const override
+    {
+        return "ImplProduct1";
+    }
 };
-class ConcreteProduct2 : public Product {
- public:
-  std::string Operation() const override
-  {
-    return "{Result of the ConcreteProduct2}";
-  }
+class ImplProduct2 : public IProduct {
+public:
+    std::string Entity() const override
+    {
+        return "ImplProduct2";
+    }
 };
 
-/**
- * The Creator class declares the factory method that 
- * is supposed to return an object of a Product class. 
- * 
- * The Creator's subclasses usually provide the
- * implementation of this method.
- */
 
+/*
+    The Creator class declares the factory method that 
+    returns an implementation of the Product class.
+
+    The Creator's subclasses usually provide the
+    implementation of this method.
+*/
 class Creator {
-  /**
-   * Note that the Creator may also provide some default 
-   * implementation of the factory method.
-   */
  public:
-  virtual ~Creator(){};
-  virtual Product* FactoryMethod() const = 0;
-  /**
-   * Also note that, despite its name, the Creator's 
-   * primary responsibility is not creating products. 
-   * 
-   * Usually, it contains some core business logic that
-   * relies on Product objects, returned by the factory method.
-   * 
-   * Subclasses can indirectly change that business logic
-   * by overriding the factory method and returning a 
-   * different type of product from it.
-   */
+    virtual ~Creator() {};
 
-  std::string SomeOperation() const
-  {
-    // Call the factory method to create a Product object.
-    Product* product = this->FactoryMethod();
-    // Now, use the product.
-    std::string result =
-        "Creator: The same creator's code has just worked with "
-        + product->Operation();
+    /*
+        This is known as the Factory Method
+    */
+    virtual IProduct* GetProduct() const = 0;
 
-    delete product;
+    /*
+        The Creator contains core business logic that
+        relies on Product objects returned by the
+        factory method.
+    */
+    std::string UseProduct() const
+    {
+        /*
+            Call the factory method to create a Product object. 
+        */
+        IProduct* product = this->GetProduct();
+        
+        std::string result =
+            "The creator just worked with Product: "
+            + product->Entity();
 
-    return result;
-  }
+        delete product;
+
+        return result;
+    }
 };
 
-/**
- * Concrete Creators override the factory method in order
- * to change the resulting product's type.
- */
-class ConcreteCreator1 : public Creator {
-  /**
-   * Note that the signature of the method still uses the 
-   * abstract product type, even though the concrete product
-   * is actually returned from the method.
-   * 
-   * This way the Creator can stay independent of concrete
-   * product classes.
-   */
- public:
-  Product* FactoryMethod() const override
-  {
-    return new ConcreteProduct1();
-  }
+/*
+    Implementation for Creator overrides the factory method,
+    thus changing the resulting product's type.
+*/
+class ImplCreator1 : public Creator {
+    /*
+        Note that the signature of the method
+        still uses the abstract product type
+    */
+public:
+    IProduct* GetProduct() const override
+    {
+        return new ImplProduct1();
+    }
 };
 
-class ConcreteCreator2 : public Creator {
- public:
-  Product* FactoryMethod() const override
-  {
-    return new ConcreteProduct2();
-  }
+class ImplCreator2 : public Creator {
+public:
+    IProduct* GetProduct() const override
+    {
+        return new ImplProduct2();
+    }
 };
