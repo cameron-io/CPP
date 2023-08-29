@@ -9,7 +9,7 @@
     As long as the client keeps working with the creator via the
     base interface, you can pass it any creator's subclass.
 */
-void ClientCode(const Creator& creator)
+void ClientCode(const IProductProvider& creator)
 {
   std::cout << "Client: I'm not aware of the creator's class.\n"
             << creator.UseProduct() 
@@ -24,12 +24,12 @@ int main()
 {
   std::cout << "App: Launched with the ImplCreator1.\n";
 
-  Creator* creator = new ImplCreator1();
+  IProductProvider* creator = new ProductProvider1();
   ClientCode(*creator);
 
   std::cout << "App: Launched with the ImplCreator2.\n";
 
-  Creator* creator2 = new ImplCreator2();
+  IProductProvider* creator2 = new ProductProvider2();
   ClientCode(*creator2);
 
   delete creator;

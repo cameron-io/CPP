@@ -7,21 +7,21 @@
 class IProduct {
 public:
     virtual ~IProduct() {}
-    virtual std::string Entity() const = 0;
+    virtual std::string GetName() const = 0;
 };
 
-class ImplProduct1 : public IProduct {
+class Product1 : public IProduct {
 public:
-    std::string Entity() const override
+    std::string GetName() const override
     {
-        return "ImplProduct1";
+        return "Product1";
     }
 };
-class ImplProduct2 : public IProduct {
+class Product2 : public IProduct {
 public:
-    std::string Entity() const override
+    std::string GetName() const override
     {
-        return "ImplProduct2";
+        return "Product2";
     }
 };
 
@@ -33,9 +33,9 @@ public:
     The Creator's subclasses usually provide the
     implementation of this method.
 */
-class Creator {
+class IProductProvider {
  public:
-    virtual ~Creator() {};
+    virtual ~IProductProvider() {};
 
     /*
         This is known as the Factory Method
@@ -56,7 +56,7 @@ class Creator {
         
         std::string result =
             "The creator just worked with Product: "
-            + product->Entity();
+            + product->GetName();
 
         delete product;
 
@@ -68,7 +68,7 @@ class Creator {
     Implementation for Creator overrides the factory method,
     thus changing the resulting product's type.
 */
-class ImplCreator1 : public Creator {
+class ProductProvider1 : public IProductProvider {
     /*
         Note that the signature of the method
         still uses the abstract product type
@@ -76,14 +76,14 @@ class ImplCreator1 : public Creator {
 public:
     IProduct* GetProduct() const override
     {
-        return new ImplProduct1();
+        return new Product1();
     }
 };
 
-class ImplCreator2 : public Creator {
+class ProductProvider2 : public IProductProvider {
 public:
     IProduct* GetProduct() const override
     {
-        return new ImplProduct2();
+        return new Product2();
     }
 };
