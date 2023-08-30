@@ -32,6 +32,7 @@ add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
     lib/oop/design_patterns/factory.hpp
+    lib/oop/design_patterns/builder_pattern.hpp
     lib/oop/interface.hpp
     lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp
@@ -75,12 +76,17 @@ add_executable(factory_tests
     tests/oop/factory_tests.cpp)
 target_link_libraries(factory_tests oop_lib)
 
+add_executable(builder_pattern_tests
+    tests/oop/builder_pattern_tests.cpp)
+target_link_libraries(builder_pattern_tests oop_lib)
+
 add_test (NAME dependency_injection_tests COMMAND dependency_injection_tests)
 add_test (NAME object_copy_tests COMMAND object_copy_tests)
 add_test (NAME polymorphism_tests COMMAND polymorphism_tests)
 add_test (NAME interface_tests COMMAND interface_tests)
 add_test (NAME singleton_tests COMMAND singleton_tests)
 add_test (NAME factory_tests COMMAND factory_tests)
+add_test (NAME builder_pattern_tests COMMAND builder_pattern_tests)
 
 # Linked Lists
 
