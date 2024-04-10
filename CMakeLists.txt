@@ -143,8 +143,10 @@ add_test (
 
 add_executable(multi_threading_tests
     tests/multi_threading/parallelism_tests.cpp)
-    add_test (NAME multi_threading_tests COMMAND multi_threading_tests)
-    target_link_libraries(dynamic_programming_tests
+add_test(
+    NAME multi_threading_tests
+    COMMAND multi_threading_tests)
+target_link_libraries(dynamic_programming_tests
         multi_threading_lib)
 
 ###
