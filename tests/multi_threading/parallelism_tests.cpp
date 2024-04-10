@@ -4,6 +4,8 @@ void* print_message_function(void *ptr)
 {
     char *msg = (char *) ptr;
     printf("%s\n", msg);
+
+    return (void*) 0;
 }
 
 int main()
