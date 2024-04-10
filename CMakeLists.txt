@@ -46,6 +46,12 @@ add_library(fibonacci_lib SHARED
 set_target_properties(fibonacci_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
+add_library(multi_threading_lib SHARED
+    lib/multi_threading/parallelism.hpp
+)
+set_target_properties(multi_threading_lib
+    PROPERTIES LINKER_LANGUAGE CXX)
+
 ###
 # Executables
 ###
@@ -132,6 +138,14 @@ target_link_libraries(dynamic_programming_tests
 add_test (
     NAME dynamic_programming_tests 
     COMMAND dynamic_programming_tests)
+
+# Multi-Threading
+
+add_executable(multi_threading_tests
+    tests/multi_threading/parallelism_tests.cpp)
+    add_test (NAME multi_threading_tests COMMAND multi_threading_tests)
+    target_link_libraries(dynamic_programming_tests
+        multi_threading_lib)
 
 ###
 # CTest
