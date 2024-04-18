@@ -4,10 +4,10 @@ int main()
 {
     auto queue = new Queue();
 
-    queue->enqueue("Jaguar");
-    queue->enqueue("Envision");
-    queue->enqueue("Avalanche");
-    queue->enqueue("McLaren");
+    queue->enqueue(30);
+    queue->enqueue(20);
+    queue->enqueue(40);
+    queue->enqueue(10);
 
     std::cout << "1. initial values:" << std::endl;
     queue->print();

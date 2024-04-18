@@ -1,15 +1,15 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <string>
 #include <iostream>
 
 class Node {
 public:
-    std::string value;
+    int value;
+    Node* prev = nullptr;
     Node* next = nullptr;
 
-    Node(std::string value)
+    Node(int value)
     {
         this->value = value;
     }
@@ -21,7 +21,7 @@ class Queue {
     int size = 0;
 
 public:
-    int enqueue(std::string value)
+    int enqueue(int value)
     {
         Node* node = new Node(value);
 
@@ -31,6 +31,7 @@ public:
         } else {
             Node* old_tail = this->tail;
             old_tail->next = node;
+            node->prev = old_tail;
             this->tail = node;
         }
         this->size++;
@@ -50,6 +51,7 @@ public:
             this->tail = nullptr;
         } else {
             this->head = prev_head->next;
+            this->head->prev = nullptr;
         }
 
         delete prev_head;
