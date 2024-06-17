@@ -148,6 +148,9 @@ add_test(
     COMMAND multi_threading_tests)
 target_link_libraries(dynamic_programming_tests
         multi_threading_lib)
+target_sources(multi_threading_tests
+    PRIVATE lib/multi_threading/parallelism.cpp
+)
 
 ###
 # CTest
