@@ -1,14 +1,6 @@
 #include <iostream>
 #include "lib/oop/object_copy.hpp"
 
-std::ostream& operator<<(
-    std::ostream& stream,
-    const String& string)
-{
-    stream << string.m_Buffer;
-    return stream;
-}
-
 /*
     In most cases, an object must be passed in by
     (const) reference, to prevent unnecessary copies
@@ -19,7 +11,7 @@ void SomeFunction(const String& string)
     std::cout << string << std::endl;
 }
 
-int object_copy_test()
+void object_copy_test()
 {
     String first = "test";
     String second = first;
@@ -32,11 +24,10 @@ int object_copy_test()
 
     std::cout << first << std::endl;
     std::cout << second << std::endl;
-
-    return 0;
 }
 
 int main()
 {
-    return object_copy_test();
+    object_copy_test();
+    return 0;
 }
