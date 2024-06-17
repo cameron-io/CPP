@@ -20,40 +20,22 @@ public:
     {
         return s_Instance;
     }
-    void SomeFunction() {}
+    void IncrementCounter()
+    {
+        m_Counter++;
+    }
+    int GetCounterValue()
+    {
+        return GetInstance().m_Counter;
+    }
 
 private:
     Singleton() {}
 
-    float m_Data = 0.0f;
+    int m_Counter = 0;
 
     // Instance is declared in translation unit
     static Singleton s_Instance;
-};
-
-/*
-    Random Number Generator
-*/
-class Random
-{
-public:
-    Random(const Random&) = delete;
-    Random& operator=(const Random) = delete;
-
-    static Random& Get() 
-    {
-        static Random instance;
-        return instance;
-    }
-
-    static float Float() { return Get().FloatInternal(); }
-
-private:
-    Random() {}
-
-    float FloatInternal() { return m_RandomGenerator; }
-
-    float m_RandomGenerator = 0.5f;
 };
 
 #endif
