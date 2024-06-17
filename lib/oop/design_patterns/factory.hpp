@@ -53,6 +53,7 @@ class IBankAccountFactory {
             Call the factory method to create a Product object. 
         */
         IBankAccount* account = this->CreateAccount();
+        std::string accountType = account->GetType();
         
         std::string result =
             "The creator just worked with Product: "
@@ -60,7 +61,7 @@ class IBankAccountFactory {
 
         delete account;
 
-        return result;
+        return accountType;
     }
 };
 

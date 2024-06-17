@@ -1,4 +1,6 @@
+#include <stdexcept>
 #include <iostream>
+#include <string>
 
 #include "lib/oop/design_patterns/factory.hpp"
 
@@ -26,12 +28,17 @@ int main()
     std::cout << "App: Launched with the PersonalBankAccountCreator.\n";
 
     IBankAccountFactory* personalBankAccount = new PersonalBankAccountCreator();
-    Client(*personalBankAccount);
+    if (personalBankAccount->GetAccountType() != "Personal")
+        throw new std::logic_error(
+            "assertion failure");
 
     std::cout << "App: Launched with the BusinessBankAccountCreator.\n";
 
     IBankAccountFactory* businessBankAccount = new BusinessBankAccountCreator();
     Client(*businessBankAccount);
+    if (businessBankAccount->GetAccountType() != "Business")
+        throw new std::logic_error(
+            "assertion failure");
 
     delete personalBankAccount;
     delete businessBankAccount;
