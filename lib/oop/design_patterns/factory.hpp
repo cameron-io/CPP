@@ -4,24 +4,24 @@
 /*
     Base Interface & its Implementations
 */
-class IProduct {
+class IBankAccount {
 public:
-    virtual ~IProduct() {}
-    virtual std::string GetName() const = 0;
+    virtual ~IBankAccount() {}
+    virtual std::string GetType() const = 0;
 };
 
-class Product1 : public IProduct {
+class PersonalBankAccount : public IBankAccount {
 public:
-    std::string GetName() const override
+    std::string GetType() const override
     {
-        return "Product1";
+        return "Personal";
     }
 };
-class Product2 : public IProduct {
+class BusinessBankAccount : public IBankAccount {
 public:
-    std::string GetName() const override
+    std::string GetType() const override
     {
-        return "Product2";
+        return "Business";
     }
 };
 
@@ -33,57 +33,58 @@ public:
     The Creator's subclasses usually provide the
     implementation of this method.
 */
-class IProductProvider {
+class IBankAccountFactory {
  public:
-    virtual ~IProductProvider() {};
+    virtual ~IBankAccountFactory() {};
 
     /*
         This is known as the Factory Method
     */
-    virtual IProduct* GetProduct() const = 0;
+    virtual IBankAccount* CreateAccount() const = 0;
 
     /*
         The Creator contains core business logic that
         relies on Product objects returned by the
         factory method.
     */
-    std::string UseProduct() const
+    std::string GetAccountType() const
     {
         /*
             Call the factory method to create a Product object. 
         */
-        IProduct* product = this->GetProduct();
+        IBankAccount* account = this->CreateAccount();
         
         std::string result =
             "The creator just worked with Product: "
-            + product->GetName();
+            + account->GetType();
 
-        delete product;
+        delete account;
 
         return result;
     }
 };
 
+
 /*
-    Implementation for Creator overrides the factory method,
-    thus changing the resulting product's type.
+    Implementation for Creator overrides the factory method to 
+    instantiate a specific concrete product class.
 */
-class ProductProvider1 : public IProductProvider {
+class PersonalBankAccountCreator : public IBankAccountFactory {
+public:
     /*
         Note that the signature of the method
         still uses the abstract product type
     */
-public:
-    IProduct* GetProduct() const override
+    IBankAccount* CreateAccount() const override
     {
-        return new Product1();
+        return new PersonalBankAccount();
     }
 };
 
-class ProductProvider2 : public IProductProvider {
+class BusinessBankAccountCreator : public IBankAccountFactory {
 public:
-    IProduct* GetProduct() const override
+    IBankAccount* CreateAccount() const override
     {
-        return new Product2();
+        return new BusinessBankAccount();
     }
 };
