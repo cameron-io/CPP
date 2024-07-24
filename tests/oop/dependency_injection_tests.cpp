@@ -10,11 +10,11 @@ int dependency_injection_test()
     
     // petrol source is injected.
     Car mclaren_f1(petrolSource);
-    mclaren_f1.getEnergy();
+    mclaren_f1.GetEnergy();
 
     // battery source is injected.
     Car formula_e(batterySource);
-    formula_e.getEnergy();
+    formula_e.GetEnergy();
 
     delete petrolSource;
     delete batterySource;

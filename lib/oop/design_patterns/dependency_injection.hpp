@@ -28,7 +28,7 @@ public:
             throw std::invalid_argument("service must not be null");
         }
     }
-    void getEnergy()
+    void GetEnergy()
     {
         std::cout << "Car is pulling in to service station!" << std::endl;
         /*
