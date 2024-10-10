@@ -1,9 +1,12 @@
-#include "lib/oop/design_patterns/dependency_injection.hpp"
+#include "lib/oop/design_patterns/dependency_injection/Car.hpp"
+#include "lib/oop/design_patterns/dependency_injection/EnergySource.hpp"
+#include "lib/oop/design_patterns/dependency_injection/EnergySourceBattery.hpp"
+#include "lib/oop/design_patterns/dependency_injection/EnergySourcePetrol.hpp"
 
 int dependency_injection_test()
 {
-    EnergySource *petrolSource = new Petrol();
-    EnergySource *batterySource = new Battery();
+    EnergySource *petrolSource = new EnergySourcePetrol();
+    EnergySource *batterySource = new EnergySourceBattery();
 
     // each car is independent from the 
     // implementation of the energy source.

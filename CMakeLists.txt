@@ -29,10 +29,8 @@ set_target_properties(linked_list_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
 add_library(oop_lib SHARED
-    lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
     lib/oop/design_patterns/factory.hpp
-    lib/oop/interface.hpp
     lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp
 )
@@ -46,6 +44,15 @@ add_library(builder_lib SHARED
     lib/oop/design_patterns/builder/SportsCarBuilder.hpp)
     
 set_target_properties(builder_lib
+    PROPERTIES LINKER_LANGUAGE CXX)
+
+add_library(dependency_injection_lib SHARED
+    lib/oop/design_patterns/dependency_injection/Car.hpp
+    lib/oop/design_patterns/dependency_injection/EnergySource.hpp
+    lib/oop/design_patterns/dependency_injection/EnergySourceBattery.hpp
+    lib/oop/design_patterns/dependency_injection/EnergySourcePetrol.hpp)
+    
+set_target_properties(dependency_injection_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
 add_library(fibonacci_lib SHARED
@@ -68,7 +75,7 @@ set_target_properties(multi_threading_lib
 
 add_executable(dependency_injection_tests
     tests/oop/dependency_injection_tests.cpp)
-target_link_libraries(dependency_injection_tests oop_lib)
+target_link_libraries(dependency_injection_tests dependency_injection_lib)
 
 add_executable(object_copy_tests
 tests/oop/object_copy_tests.cpp)
@@ -80,7 +87,7 @@ target_link_libraries(polymorphism_tests oop_lib)
 
 add_executable(interface_tests
     tests/oop/interface_tests.cpp)
-target_link_libraries(interface_tests oop_lib)
+target_link_libraries(interface_tests dependency_injection_lib)
 
 add_executable(singleton_tests
     tests/oop/singleton_tests.cpp)

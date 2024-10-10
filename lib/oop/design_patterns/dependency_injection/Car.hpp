@@ -1,12 +1,12 @@
-#ifndef DEPENDENCY_INJECTION_H
-#define DEPENDENCY_INJECTION_H
+#ifndef CAR_H
+#define CAR_H
 
 #include <iostream>
 
 /*
     This design pattern extends the use of Interfaces
 */
-#include "../interface.hpp"
+#include "EnergySource.hpp"
 
 class Car {
     /*

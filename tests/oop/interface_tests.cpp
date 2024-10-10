@@ -1,4 +1,5 @@
-#include "lib/oop/interface.hpp"
+#include "lib/oop/design_patterns/dependency_injection/EnergySource.hpp"
+#include "lib/oop/design_patterns/dependency_injection/EnergySourcePetrol.hpp"
 
 int main()
 {
@@ -16,7 +17,7 @@ int main()
         This can be simplified into a single step:
           EnergySource* petrol = new Petrol();
     */
-    Petrol* petrol = new Petrol();
+    EnergySourcePetrol* petrol = new EnergySourcePetrol();
     es = petrol;
 
     /*
