@@ -32,12 +32,20 @@ add_library(oop_lib SHARED
     lib/oop/design_patterns/dependency_injection.hpp
     lib/oop/design_patterns/singletons.hpp
     lib/oop/design_patterns/factory.hpp
-    lib/oop/design_patterns/builder_pattern.hpp
     lib/oop/interface.hpp
     lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp
 )
 set_target_properties(oop_lib
+    PROPERTIES LINKER_LANGUAGE CXX)
+
+add_library(builder_lib SHARED
+    lib/oop/design_patterns/builder/CarProduct.hpp
+    lib/oop/design_patterns/builder/ICarBuilder.hpp
+    lib/oop/design_patterns/builder/Pipeline.hpp
+    lib/oop/design_patterns/builder/SportsCarBuilder.hpp)
+    
+set_target_properties(builder_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
 add_library(fibonacci_lib SHARED
@@ -84,7 +92,7 @@ target_link_libraries(factory_tests oop_lib)
 
 add_executable(builder_pattern_tests
     tests/oop/builder_pattern_tests.cpp)
-target_link_libraries(builder_pattern_tests oop_lib)
+target_link_libraries(builder_pattern_tests builder_lib)
 
 add_test (NAME dependency_injection_tests COMMAND dependency_injection_tests)
 add_test (NAME object_copy_tests COMMAND object_copy_tests)

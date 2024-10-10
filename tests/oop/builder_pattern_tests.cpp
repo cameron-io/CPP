@@ -1,4 +1,7 @@
-#include "lib/oop/design_patterns/builder_pattern.hpp"
+#include "lib/oop/design_patterns/builder/CarProduct.hpp"
+#include "lib/oop/design_patterns/builder/ICarBuilder.hpp"
+#include "lib/oop/design_patterns/builder/SportsCarBuilder.hpp"
+#include "lib/oop/design_patterns/builder/Pipeline.hpp"
 
 void ClientCode()
 {
@@ -24,8 +27,8 @@ void ClientCode()
         Builder pattern can be used without a Pipeline class.
     */
     std::cout << "Custom product:\n";
-    builder->ProduceChassis();
-    builder->ProduceEngine();
+    builder->SetChassis();
+    builder->SetEngine();
 
     p = builder->GetProduct();
     p->ListParts();
