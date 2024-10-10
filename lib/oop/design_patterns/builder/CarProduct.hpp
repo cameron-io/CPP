@@ -14,17 +14,31 @@
 */
 class CarProduct{
 public:
-    std::vector<std::string> parts;
+    std::string chassis = "";
+    std::string drivetrain = "";
+    std::string engine = "";
+    std::string wheels = "";
+    std::string seats = "";
+    std::string dashboard = "";
+    std::string wiring = "";
 
-    void ListParts() const
+    int CountParts() const
     {
-        std::cout << "Product materials:\n";
-        
-        for (int i = 0; i < parts.size(); i++) {
-            std::cout << "-> " << parts[i] << "\n";
-        }
+        std::string parts[7] = {
+            this->chassis,
+            this->drivetrain,
+            this->engine,
+            this->wheels,
+            this->seats,
+            this->dashboard,
+            this->wiring
+        };
 
-        std::cout << "\n" << std::endl;
+        int c = 0;
+        for (std::string p : parts) {
+            if (p != "") c++;
+        }
+        return c;
     }
 };
 

@@ -28,37 +28,37 @@ public:
 
     void SetChassis() const override
     {
-        this->product->parts.push_back("Carbon Fibre Chassis");
+        this->product->chassis = "Carbon Fibre Chassis";
     }
 
     void SetDrivetrain() const override
     {
-        this->product->parts.push_back("7-Speed Drivetrain");
+        this->product->drivetrain = "7-Speed Drivetrain";
     }
 
     void SetEngine() const override
     {
-        this->product->parts.push_back("V8 Engine");
+        this->product->engine = ("V8 Engine");
     }
 
     void SetWheels() const override
     {
-        this->product->parts.push_back("18-inch Diamond-cut Alloy Wheels");
+        this->product->wheels = "18-inch Diamond-cut Alloy Wheels";
     }
 
     void SetSeats() const override
     {
-        this->product->parts.push_back("Recaro Seats");
+        this->product->seats = "Recaro Seats";
     }
 
     void SetDashboard() const override
     {
-        this->product->parts.push_back("Suede Dashboard");
+        this->product->dashboard = "Suede Dashboard";
     }
 
     void SetWiring() const override
     {
-        this->product->parts.push_back("Wiring & Electronics");
+        this->product->wiring = "Wiring & Electronics";
     }
 
     /*

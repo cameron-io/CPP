@@ -13,14 +13,19 @@ void ClientCode()
     pipeline.BuildRollingChassisProduct();
     
     CarProduct* p = builder->GetProduct();
-    p->ListParts();
+    if (p->CountParts() != 3)
+        throw new std::logic_error(
+            "assertion failure");
     delete p;
 
     std::cout << "Standard full featured product:\n"; 
     pipeline.BuildFullFeaturedProduct();
 
     p = builder->GetProduct();
-    p->ListParts();
+    
+    if (p->CountParts() != 7)
+        throw new std::logic_error(
+            "assertion failure");
     delete p;
 
     /*
@@ -31,7 +36,9 @@ void ClientCode()
     builder->SetEngine();
 
     p = builder->GetProduct();
-    p->ListParts();
+    if (p->CountParts() != 2)
+        throw new std::logic_error(
+            "assertion failure");
     delete p;
 }
 
