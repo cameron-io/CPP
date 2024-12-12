@@ -1,5 +1,7 @@
 ## A collection of C++ learning modules & topics
 
+Using the C++ 23 standard.
+
 ### Requirements
 - Apple clang version 16.0.0 (clang-1600.0.26.4)
 - cmake version 3.31.2
