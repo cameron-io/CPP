@@ -1,9 +1,19 @@
-# Turbo Library :snail:
-
 ## A collection of C++ learning modules & topics
 
 ### Requirements
-- GNU C++ Compiler
-- CMake
+- Apple clang version 16.0.0 (clang-1600.0.26.4)
+- cmake version 3.31.2
+- ninja 1.12.1
 
-<img src="https://media.tenor.com/urK94l3kdb8AAAAC/tuyrbo-hack.gif" height=200 />
+### Install Dependencies
+
+MacOS:
+```
+brew install cmake ninja
+```
+
+### Compile & Test
+```
+make compile
+make test
+```
