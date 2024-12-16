@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <string.h>
+#include <boost/assert.hpp>
 
 int hash_table_test()
 {
@@ -21,16 +22,14 @@ int hash_table_test()
     };
 
     for (const auto& item : items) {
-        if (table->create_item(item.first, item.second) != 0)
-            throw std::logic_error("unable to insert item");
+        assert(table->create_item(item.first, item.second) == 0);
     }
 
     table->print_table();
 
     std::string key = "Porsche";
     auto record = table->query_item(key);
-    if (record->value != "Stuttgart, Germany")
-        throw std::logic_error("item query assertion failed");
+    assert(record->value == "Stuttgart, Germany");
 
     table->delete_item("Dodge");
 

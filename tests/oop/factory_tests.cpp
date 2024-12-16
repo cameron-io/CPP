@@ -1,4 +1,4 @@
-#include <stdexcept>
+#include <boost/assert.hpp>
 #include <iostream>
 #include <string>
 
@@ -28,17 +28,13 @@ int main()
     std::cout << "App: Launched with the PersonalBankAccountCreator.\n";
 
     IBankAccountFactory* personalBankAccount = new PersonalBankAccountCreator();
-    if (personalBankAccount->GetAccountType() != "Personal")
-        throw new std::logic_error(
-            "assertion failure");
+    assert(personalBankAccount->GetAccountType() == "Personal");
 
     std::cout << "App: Launched with the BusinessBankAccountCreator.\n";
 
     IBankAccountFactory* businessBankAccount = new BusinessBankAccountCreator();
     Client(*businessBankAccount);
-    if (businessBankAccount->GetAccountType() != "Business")
-        throw new std::logic_error(
-            "assertion failure");
+    assert(businessBankAccount->GetAccountType() == "Business");
 
     delete personalBankAccount;
     delete businessBankAccount;

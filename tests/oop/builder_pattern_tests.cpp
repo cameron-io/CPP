@@ -1,3 +1,4 @@
+#include <boost/assert.hpp>
 #include "lib/oop/design_patterns/builder/CarProduct.hpp"
 #include "lib/oop/design_patterns/builder/ICarBuilder.hpp"
 #include "lib/oop/design_patterns/builder/SportsCarBuilder.hpp"
@@ -13,9 +14,7 @@ void ClientCode()
     pipeline.BuildRollingChassisProduct();
     
     CarProduct* p = builder->GetProduct();
-    if (p->CountParts() != 3)
-        throw new std::logic_error(
-            "assertion failure");
+    assert(p->CountParts() == 3);
     delete p;
 
     std::cout << "Standard full featured product:\n"; 
@@ -23,9 +22,7 @@ void ClientCode()
 
     p = builder->GetProduct();
     
-    if (p->CountParts() != 7)
-        throw new std::logic_error(
-            "assertion failure");
+    assert(p->CountParts() == 7);
     delete p;
 
     /*
@@ -36,9 +33,7 @@ void ClientCode()
     builder->SetEngine();
 
     p = builder->GetProduct();
-    if (p->CountParts() != 2)
-        throw new std::logic_error(
-            "assertion failure");
+    assert(p->CountParts() == 2);
     delete p;
 }
 

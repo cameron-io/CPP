@@ -61,7 +61,7 @@ add_library(table_lib SHARED
 add_executable(hash_table_tests
     tests/tables/hash_table_tests.cpp)
 target_link_libraries(hash_table_tests
-    table_lib)
+    table_lib Boost::assert)
 add_test (NAME hash_table_tests COMMAND hash_table_tests)
 
 # linked_list_lib
@@ -73,7 +73,7 @@ add_library(linked_list_lib SHARED
 set_target_properties(linked_list_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
-    add_executable(queue_tests
+add_executable(queue_tests
     tests/linked_lists/queue_tests.cpp)
 target_link_libraries(queue_tests
     linked_list_lib)
@@ -108,12 +108,14 @@ add_test (NAME polymorphism_tests COMMAND polymorphism_tests)
 
 add_executable(singleton_tests
     tests/oop/singleton_tests.cpp)
-target_link_libraries(singleton_tests oop_lib)
+target_link_libraries(singleton_tests
+    oop_lib Boost::assert)
 add_test (NAME singleton_tests COMMAND singleton_tests)
 
 add_executable(factory_tests
     tests/oop/factory_tests.cpp)
-target_link_libraries(factory_tests oop_lib)
+target_link_libraries(factory_tests
+    oop_lib Boost::assert)
 add_test (NAME factory_tests COMMAND factory_tests)
 
 # builder_lib
@@ -129,7 +131,8 @@ set_target_properties(builder_lib
 
 add_executable(builder_pattern_tests
     tests/oop/builder_pattern_tests.cpp)
-target_link_libraries(builder_pattern_tests builder_lib)
+target_link_libraries(builder_pattern_tests
+    builder_lib Boost::assert)
 add_test (NAME builder_pattern_tests COMMAND builder_pattern_tests)
 
 # dependency_injection_tests
@@ -161,8 +164,6 @@ add_library(multi_threading_lib SHARED
 set_target_properties(multi_threading_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
-# multi_threading_lib
-
 add_executable(multi_threading_tests
     tests/multi_threading/parallelism_tests.cpp)
 add_test(
@@ -183,12 +184,10 @@ set_target_properties(fibonacci_lib
 add_executable(dynamic_programming_tests
     tests/dynamic_programming/fibonacci_tests.cpp)
 target_link_libraries(dynamic_programming_tests
-    fibonacci_lib Boost::math)
+    fibonacci_lib Boost::assert)
 add_test (
     NAME dynamic_programming_tests 
     COMMAND dynamic_programming_tests)
-target_link_libraries(dynamic_programming_tests
-    multi_threading_lib)
 
 # pointer_arithmetic
 

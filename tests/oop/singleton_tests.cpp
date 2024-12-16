@@ -1,3 +1,4 @@
+#include <boost/assert.hpp>
 #include "lib/oop/design_patterns/singleton.hpp"
 #include <stdexcept>
 #include <chrono>
@@ -13,15 +14,11 @@ void singleton_basic_test()
     instance.IncrementCounter();
     instance.IncrementCounter();
 
-    if (instance.GetCounterValue() != 2)
-        throw new std::logic_error(
-            "assertion failure");
+    assert(instance.GetCounterValue() == 2);
 
     Singleton& instance2 = Singleton::GetInstance();
     
-    if (instance.GetCounterValue() != instance2.GetCounterValue())
-        throw new std::logic_error(
-            "assertion failure");
+    assert(instance.GetCounterValue() == instance2.GetCounterValue());
 }
 
 constexpr auto tenMill = 10000000;
