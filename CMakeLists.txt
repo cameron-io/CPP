@@ -36,7 +36,7 @@ set_target_properties(linked_list_lib
     PROPERTIES LINKER_LANGUAGE CXX)
 
 add_library(oop_lib SHARED
-    lib/oop/design_patterns/singletons.hpp
+    lib/oop/design_patterns/singleton.hpp
     lib/oop/design_patterns/factory.hpp
     lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp

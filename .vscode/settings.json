@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.dbclient-js": "javascript",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -46,6 +47,7 @@
         "typeinfo": "cpp",
         "map": "cpp",
         "hash_map": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "future": "cpp"
     }
 }

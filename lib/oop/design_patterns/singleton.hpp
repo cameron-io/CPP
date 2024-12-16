@@ -1,19 +1,12 @@
 #ifndef SINGLETON
 #define SINGLETON
 
-/*
-    Common Singleton Pattern:
-    - used in OOP languages, eg. Java 
-*/
 class Singleton
 {
 public:
-    /*
-        Remove Copy Constructor to prevent
-        accidental instance copies created, 
-        causing data duplication
-    */
+    // Copy Constructor
     Singleton(const Singleton&) = delete;
+    // Assignment operator
     Singleton& operator=(const Singleton) = delete;
 
     static Singleton& GetInstance()
