@@ -13,6 +13,14 @@ endif()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS true)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 set(FullOutputDir "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}${OSBitness}/${CMAKE_BUILD_TYPE}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static_lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}/lib")
@@ -26,8 +34,13 @@ include_directories(.)
 # Dependencies
 ###
 
-set(BOOST_INCLUDE_LIBRARIES math)
-set(BOOST_ENABLE_CMAKE ON)
+set(Boost_INCLUDE_LIBRARIES math)
+set(Boost_ENABLE_CMAKE ON)
+set(Boost_USE_MULTITHREADED ON)
+# # whether to force the use of the static libraries
+# set(Boost_USE_STATIC_LIBS OFF)
+# # whether to use libraries linked statically to the C++ runtime ("s" tag)
+# set(Boost_USE_STATIC_RUNTIME OFF)
 include(FetchContent)
 FetchContent_Declare(
   Boost
