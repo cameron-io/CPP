@@ -1,8 +1,8 @@
+#include "lib/oop/design_patterns/factory.hpp"
 #include <boost/assert.hpp>
 #include <iostream>
 #include <string>
 
-#include "lib/oop/design_patterns/factory.hpp"
 
 /*
     The client code works with an instance of a IBankAccountFactory,

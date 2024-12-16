@@ -1,5 +1,4 @@
 #include "lib/tables/hash_table.hpp"
-
 #include <map>
 #include <string>
 #include <string.h>

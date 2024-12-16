@@ -1,5 +1,4 @@
-
-#include <stdexcept>
+#include <boost/assert.hpp>
 
 int primitives()
 {
@@ -77,11 +76,7 @@ int main()
 
     int* coordinates = struct_to_list(g);
 
-    if (coordinates[1] != 2)
-        throw new std::logic_error(
-            "assertion: struct_to_list error");
+    assert(coordinates[1] == 2);
 
-    if (get_y(g) != 2)
-        throw new std::logic_error(
-            "assertion: get_y error");
+    assert(get_y(g) == 2);
 }

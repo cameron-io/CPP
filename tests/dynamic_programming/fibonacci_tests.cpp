@@ -1,6 +1,5 @@
 
 #include "lib/dynamic_programming/fibonacci.hpp"
-
 #include <iostream>
 #include <functional>
 #include <boost/assert.hpp>
@@ -15,7 +14,7 @@ void fib_tests()
 
     bool is_equal = false;
 
-    for (const auto fun : functions) {
+    for (const std::function<int (int)> &fun : functions) {
         int expected = 34;
         int res = fun(9);
         is_equal = res == expected;

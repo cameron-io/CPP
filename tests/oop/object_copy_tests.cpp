@@ -1,17 +1,17 @@
-#include <iostream>
 #include "lib/oop/object_copy.hpp"
+#include <iostream>
 
 /*
     In most cases, an object must be passed in by
     (const) reference, to prevent unnecessary copies
     unless explicitly required
 */
-void SomeFunction(const String& string)
+void someFunction(const String& string)
 {
     std::cout << string << std::endl;
 }
 
-void object_copy_test()
+void objectCopyTest()
 {
     String first = "test";
     String second = first;
@@ -19,8 +19,8 @@ void object_copy_test()
     // Must not update first variable
     second[2] = 'n';
 
-    SomeFunction(first);
-    SomeFunction(second);
+    someFunction(first);
+    someFunction(second);
 
     std::cout << first << std::endl;
     std::cout << second << std::endl;
@@ -28,6 +28,6 @@ void object_copy_test()
 
 int main()
 {
-    object_copy_test();
+    objectCopyTest();
     return 0;
 }

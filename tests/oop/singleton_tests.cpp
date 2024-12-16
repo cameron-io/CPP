@@ -1,9 +1,8 @@
-#include <boost/assert.hpp>
 #include "lib/oop/design_patterns/singleton.hpp"
-#include <stdexcept>
 #include <chrono>
 #include <future>
 #include <iostream>
+#include <boost/assert.hpp>
 
 // Declare static object
 Singleton Singleton::s_Instance;

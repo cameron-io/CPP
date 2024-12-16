@@ -1,8 +1,8 @@
-#include <boost/assert.hpp>
 #include "lib/oop/design_patterns/builder/CarProduct.hpp"
 #include "lib/oop/design_patterns/builder/ICarBuilder.hpp"
 #include "lib/oop/design_patterns/builder/SportsCarBuilder.hpp"
 #include "lib/oop/design_patterns/builder/Pipeline.hpp"
+#include <boost/assert.hpp>
 
 void ClientCode()
 {
