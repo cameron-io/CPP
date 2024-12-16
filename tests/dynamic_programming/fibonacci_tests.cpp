@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <functional>
+#include <boost/assert.hpp>
 
-int fib_tests()
+void fib_tests()
 {
     std::function<int(int)> functions[] = {
         Fibonacci::simple,
@@ -20,14 +21,12 @@ int fib_tests()
         is_equal = res == expected;
     }
 
-    if (is_equal)
-        return 0;
-    else
-        std::cerr << "assertion failure" << std::endl;
-        return 1;
+    assert(is_equal);
 }
 
 int main()
 {
-    return fib_tests();
+    fib_tests();
+
+    return 0;
 }

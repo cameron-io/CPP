@@ -18,7 +18,23 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static_lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}/bin")
 
+include(FetchContent)
+
 include_directories(.)
+
+###
+# Dependencies
+###
+
+set(BOOST_INCLUDE_LIBRARIES math)
+set(BOOST_ENABLE_CMAKE ON)
+include(FetchContent)
+FetchContent_Declare(
+  Boost
+  GIT_REPOSITORY https://github.com/boostorg/boost.git
+  GIT_TAG boost-1.87.0
+)
+FetchContent_MakeAvailable(Boost)
 
 ###
 # Libraries
@@ -156,7 +172,7 @@ add_test (NAME type_punning_tests COMMAND type_punning_tests)
 add_executable(dynamic_programming_tests
     tests/dynamic_programming/fibonacci_tests.cpp)
 target_link_libraries(dynamic_programming_tests
-    fibonacci_lib)
+    fibonacci_lib Boost::math)
 add_test (
     NAME dynamic_programming_tests 
     COMMAND dynamic_programming_tests)
