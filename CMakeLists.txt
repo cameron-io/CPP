@@ -80,7 +80,6 @@ add_test(NAME stack_tests COMMAND stack_tests)
 
 add_library(oop_lib SHARED
     lib/oop/design_patterns/singleton.hpp
-    lib/oop/design_patterns/factory.hpp
     lib/oop/polymorphism.hpp
     lib/oop/object_copy.hpp)
 set_target_properties(oop_lib PROPERTIES LINKER_LANGUAGE CXX)
@@ -97,10 +96,6 @@ add_executable(singleton_tests tests/oop/singleton_tests.cpp)
 target_link_libraries(singleton_tests oop_lib Boost::assert)
 add_test(NAME singleton_tests COMMAND singleton_tests)
 
-add_executable(factory_tests tests/oop/factory_tests.cpp)
-target_link_libraries(factory_tests oop_lib Boost::assert)
-add_test(NAME factory_tests COMMAND factory_tests)
-
 # builder_lib
 
 add_library(builder_lib SHARED
@@ -114,6 +109,23 @@ set_target_properties(builder_lib PROPERTIES LINKER_LANGUAGE CXX)
 add_executable(builder_pattern_tests tests/oop/builder_pattern_tests.cpp)
 target_link_libraries(builder_pattern_tests builder_lib Boost::assert)
 add_test(NAME builder_pattern_tests COMMAND builder_pattern_tests)
+
+# factory_lib
+
+add_library(factory_lib SHARED
+    lib/oop/design_patterns/factory/domain/IAccount.hpp
+    lib/oop/design_patterns/factory/domain/IAccountFactory.hpp
+    lib/oop/design_patterns/factory/application/AccountBusiness.hpp
+    lib/oop/design_patterns/factory/application/AccountPersonal.hpp
+    lib/oop/design_patterns/factory/service/AccountBusinessCreator.hpp
+    lib/oop/design_patterns/factory/service/AccountPersonalCreator.hpp
+)
+
+set_target_properties(factory_lib PROPERTIES LINKER_LANGUAGE CXX)
+
+add_executable(factory_tests tests/oop/factory_tests.cpp)
+target_link_libraries(factory_tests factory_lib Boost::assert)
+add_test(NAME factory_tests COMMAND factory_tests)
 
 # dependency_injection_tests
 

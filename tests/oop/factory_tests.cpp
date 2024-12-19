@@ -1,21 +1,24 @@
-#include "lib/oop/design_patterns/factory.hpp"
+#include "lib/oop/design_patterns/factory/domain/IAccount.hpp"
+#include "lib/oop/design_patterns/factory/domain/IAccountFactory.hpp"
+#include "lib/oop/design_patterns/factory/service/AccountPersonalCreator.hpp"
+#include "lib/oop/design_patterns/factory/service/AccountBusinessCreator.hpp"
 #include <boost/assert.hpp>
 #include <iostream>
 #include <string>
 
 
 /*
-    The client code works with an instance of a IBankAccountFactory,
+    The client code works with an instance of a IAccountFactory,
     albeit through its base interface.
 
     As long as the client keeps working with the creator via the
     base interface, you can pass it any creator's subclass.
 */
-void Client(const IBankAccountFactory& bankAccount)
+void Client(const IAccountFactory& Account)
 {
     std::cout 
         << "Client: I'm not aware of the creator's sub-class.\n"
-        << bankAccount.GetAccountType() 
+        << Account.GetAccountType() 
         << std::endl;
 }
 
@@ -25,19 +28,19 @@ void Client(const IBankAccountFactory& bankAccount)
 */
 int main()
 {
-    std::cout << "App: Launched with the PersonalBankAccountCreator.\n";
+    std::cout << "App: Launched with the AccountPersonalCreator.\n";
 
-    IBankAccountFactory* personalBankAccount = new PersonalBankAccountCreator();
-    assert(personalBankAccount->GetAccountType() == "Personal");
+    IAccountFactory* personalAccount = new AccountPersonalCreator();
+    assert(personalAccount->GetAccountType() == "Personal");
 
-    std::cout << "App: Launched with the BusinessBankAccountCreator.\n";
+    std::cout << "App: Launched with the AccountBusinessCreator.\n";
 
-    IBankAccountFactory* businessBankAccount = new BusinessBankAccountCreator();
-    Client(*businessBankAccount);
-    assert(businessBankAccount->GetAccountType() == "Business");
+    IAccountFactory* businessAccount = new AccountBusinessCreator();
+    Client(*businessAccount);
+    assert(businessAccount->GetAccountType() == "Business");
 
-    delete personalBankAccount;
-    delete businessBankAccount;
+    delete personalAccount;
+    delete businessAccount;
 
     return 0;
 }
