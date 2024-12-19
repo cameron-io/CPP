@@ -15,9 +15,9 @@ public:
         Note that the signature of the method
         still uses the abstract product type
     */
-    IAccount* CreateAccount() const override
+    std::unique_ptr<IAccount> CreateAccount() const override
     {
-        return new AccountBusiness();
+        return std::make_unique<AccountBusiness>(AccountBusiness());
     }
 };
 

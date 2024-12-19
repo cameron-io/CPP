@@ -30,17 +30,16 @@ int main()
 {
     std::cout << "App: Launched with the AccountPersonalCreator.\n";
 
-    IAccountFactory* personalAccount = new AccountPersonalCreator();
+    std::unique_ptr<IAccountFactory> personalAccount =
+        std::make_unique<AccountPersonalCreator>(AccountPersonalCreator());
     assert(personalAccount->GetAccountType() == "Personal");
 
     std::cout << "App: Launched with the AccountBusinessCreator.\n";
 
-    IAccountFactory* businessAccount = new AccountBusinessCreator();
+    std::unique_ptr<IAccountFactory> businessAccount =
+        std::make_unique<AccountBusinessCreator>(AccountBusinessCreator());
     Client(*businessAccount);
     assert(businessAccount->GetAccountType() == "Business");
-
-    delete personalAccount;
-    delete businessAccount;
 
     return 0;
 }

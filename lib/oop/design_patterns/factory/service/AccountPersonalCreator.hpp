@@ -11,9 +11,13 @@
 */
 class AccountPersonalCreator : public IAccountFactory {
 public:
-    IAccount* CreateAccount() const override
+    /*
+        Note that the signature of the method
+        still uses the abstract product type
+    */
+    std::unique_ptr<IAccount> CreateAccount() const override
     {
-        return new AccountPersonal();
+        return std::make_unique<AccountPersonal>(AccountPersonal());
     }
 };
 

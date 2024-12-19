@@ -21,7 +21,7 @@ class IAccountFactory {
     /*
         This is known as the Factory Method
     */
-    virtual IAccount* CreateAccount() const = 0;
+    virtual std::unique_ptr<IAccount> CreateAccount() const = 0;
 
     /*
         The Creator contains core business logic that
@@ -33,14 +33,12 @@ class IAccountFactory {
         /*
             Call the factory method to create a Product object. 
         */
-        IAccount* account = this->CreateAccount();
+        std::unique_ptr<IAccount> account = this->CreateAccount();
         std::string accountType = account->GetType();
         
         std::string result =
             "The creator just worked with Product: "
             + account->GetType();
-
-        delete account;
 
         return accountType;
     }
