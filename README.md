@@ -1,4 +1,4 @@
-## A collection of C++ learning modules & topics
+## A collection of C++ topics
 
 Using the C++ 23 standard.
 
